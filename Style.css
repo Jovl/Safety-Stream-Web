@@ -1,0 +1,96 @@
+﻿body, #map-canvas{
+    height: 600px;
+    width: 600px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#vid-box{
+    height: 690px;
+    width: 600px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.demo-card-square.mdl-card {
+    width: 320px;
+    height: 320px;
+}
+
+.demo-card-square > .mdl-card__title {
+    color: #fff;
+    background: #F50057;
+}
+
+#logo {
+    width: 170px;
+    height: auto;
+    margin-left: 780px;
+}
+
+#fixed, #vid-box {
+    position: fixed;
+    margin-top: 20px;
+    box-shadow: 10px 10px 8px #888888;
+}
+
+#fixed {
+    left: 20px;
+}
+
+#vid-box {
+    left: 800px;
+    clear: left;
+}
+
+#user {
+    float: right;
+    top: 20px;
+    right: 20px;
+}
+
+#gps {
+    float: right;
+    clear: right;
+    top: 80px;
+    right: 20px;
+}
+
+#map_canvas {
+    width: 100%;
+    height: 100%;
+}
+
+#title {
+    position: absolute;
+    left: 20px;
+}
+
+#vid-box {
+    width: 500px;
+}
+
+#chat {
+    margin: 2px;
+}
+
+#session {
+    right: 5px;
+    top: 2px;
+}
+
+#session, #end {
+    float: right;
+    width: 135px;
+}
+
+#end {
+    clear: right;
+    top: 8px;
+    right: 5px;
+}
+
+#send-msg {
+    right: 0px;
+    top: 9px;
+}
