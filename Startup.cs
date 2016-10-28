@@ -8,7 +8,7 @@ namespace SafetyStream
     {
         public void Configuration(IAppBuilder app)
         {
-         
+
         }
     }
 }

@@ -187,5 +187,6 @@ C:\Users\misna\Documents\Visual Studio 2015\Projects\SafetyStream\bin\Microsoft.
 C:\Users\misna\Documents\Visual Studio 2015\Projects\SafetyStream\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\misna\Documents\Visual Studio 2015\Projects\SafetyStream\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\misna\Documents\Visual Studio 2015\Projects\SafetyStream\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\misna\Documents\Visual Studio 2015\Projects\SafetyStream\obj\Debug\SafetyStream.csprojResolveAssemblyReference.cache
 C:\Users\misna\Documents\Visual Studio 2015\Projects\SafetyStream\obj\Debug\SafetyStream.dll
 C:\Users\misna\Documents\Visual Studio 2015\Projects\SafetyStream\obj\Debug\SafetyStream.pdb
