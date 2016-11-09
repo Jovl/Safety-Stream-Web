@@ -1,5 +1,5 @@
 ﻿//Define Google Maps API properties and PubNub API keys 
-var map;
+var maps;
 var map_marker;
 var lat;
 var lng;
