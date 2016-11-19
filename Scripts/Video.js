@@ -77,7 +77,7 @@ function SendMessage(){
     var chatMsg = {'msg_uuid': userId, 'msg_message': msg, 'msg_timestamp':new Date().getTime()};
     phone.send(chatMsg);
     console.log(msg);
-    add_chat("Me: ", chatMsg);
+    add_chat(userId, chatMsg);
 }
 
 // Will format in 12-hour h:mm.s a time format
