@@ -5,13 +5,6 @@
     padding: 0px;
 }
 
-#vid-box{
-    height: 690px;
-    width: 600px;
-    margin: 0px;
-    padding: 0px;
-}
-
 .demo-card-square.mdl-card {
     width: 320px;
     height: 320px;
@@ -21,14 +14,21 @@
     color: #fff;
     background: #F50057;
 }
-
+#rtc-demo{  
+	top:20px;
+    left:750px;
+    width:470px;
+    height:600px;
+    position:absolute;
+    box-shadow: 10px 10px 8px #888888;
+}
 #logo {
     width: 170px;
     height: auto;
     margin-left: 780px;
 }
 
-#fixed, #vid-box {
+#fixed {
     position: fixed;
     margin-top: 20px;
     box-shadow: 10px 10px 8px #888888;
@@ -38,10 +38,6 @@
     left: 20px;
 }
 
-#vid-box {
-    left: 800px;
-    clear: left;
-}
 
 #user {
     float: right;
@@ -64,33 +60,4 @@
 #title {
     position: absolute;
     left: 20px;
-}
-
-#vid-box {
-    width: 500px;
-}
-
-#chat {
-    margin: 2px;
-}
-
-#session {
-    right: 5px;
-    top: 2px;
-}
-
-#session, #end {
-    float: right;
-    width: 135px;
-}
-
-#end {
-    clear: right;
-    top: 8px;
-    right: 5px;
-}
-
-#send-msg {
-    right: 0px;
-    top: 9px;
 }
