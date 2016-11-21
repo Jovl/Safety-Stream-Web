@@ -1,7 +1,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="~/Style.css" media="screen" />
 </head>
-
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header style="margin-top:0px;" class="mdl-layout__header">
@@ -22,9 +21,9 @@
 
                     <div class="mdl-card__supporting-text">
                         <ul class='mdl-list'>
-                            <li class="mdl-list__item">First Name: @ViewBag.personName</li>
-                            <li class="mdl-list__item">Last Name:</li>
-                            <li class="mdl-list__item">Phone Number:</li>
+                            <li class="mdl-list__item" id="first">First Name:</li>
+                            <li class="mdl-list__item" id="last">Last Name:</li>
+                            <li class="mdl-list__item" id="age">Age:</li>                         
                         </ul>
                     </div>
                 </div>
@@ -52,6 +51,7 @@
                         <button onclick="EndSession()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                             End Session
                         </button>
+                        <h3 id="phonecont"></h3>
                     </div>
 
                 </div>
@@ -66,7 +66,7 @@
                         <div id="chat-box">[<i>Chat will appear here</i>]</div>
                     </div>
                 </div>
-              </div>
+               </div>
         </main>
     </div>
 

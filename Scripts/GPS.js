@@ -28,7 +28,7 @@ if (navigator.geolocation) {
         // Init Google Maps
         google.maps.event.addDomListener(window, 'load', initMap());
 
-    },
+            },
     //Console log Google Maps API failure 
     function (error) {
         console.log("Could initialize Google Maps API: ", error);
@@ -174,21 +174,27 @@ function initPubNub() {
     ({
         channel: "my_channel",
         message: function (message, channel) {
-            console.log(message);
+           
 
             //Recieve GPS from Android client
             lat = message.lat;
             lng = message.lng;
 
+            GetUser(message.imei);
+
+
             //Append GPS to HTML DOM
             document.getElementById("Latitude").innerHTML = "Latitude: ".concat(lat);
             document.getElementById("Longitude").innerHTML = "Latitude: ".concat(lng);
+            
 
             //Gecode LatLng to get Android client address 
             getAddress();
 
             //Update and draw client position on map
             redraw();
+
+            
         },
         connect: function () { console.log("PubNub Connected"); }
     });
@@ -203,5 +209,37 @@ function getAddress() {
     $.getJSON(query, function (results) {
         //Append adress to HTML dom 
         document.getElementById("Address").innerHTML = "Address: ".concat(results.results[0].formatted_address);
+    });
+}
+
+
+//Query DB through AJAX GET request
+function GetUser(identifier) {
+    $.ajax({
+        url: "Home/GetUser",
+        type: "GET",
+        data: { id: identifier },
+        success: function (response) {
+
+            //Return response and add set HTML properties 
+
+            document.getElementById("first").innerHTML = "First Name: ".concat(response.FirstName);
+            document.getElementById("last").innerHTML = "Last Name: ".concat(response.LastName);
+            document.getElementById("age").innerHTML = "Age: ".concat(response.Age);
+
+            var PhoneNum = response.Phone;
+
+            //Format phone number in appropriate 
+            var AreaCode = PhoneNum.slice(0, 3);
+            var Middle = PhoneNum.slice(3, 6);
+            var End = PhoneNum.slice(6, 9);
+
+            document.getElementById("phonecont").innerHTML = "Phone Number: ".concat("(").concat(AreaCode).concat(")").concat(Middle).concat("-").concat(End);
+
+            console.log(response);
+
+        },
+        error: function (xhr) {
+        }
     });
 }

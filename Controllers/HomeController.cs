@@ -11,60 +11,48 @@ namespace SafetyStream.Controllers
 {
     public class HomeController : Controller
     {
-
         public ActionResult Index()
         {
             return View();
-
         }
 
-       /* [HttpPost]
-        public ActionResult GetUser(string id)
-        {
+       [HttpGet]
+       public JsonResult GetUser(string Id)
+       {
+           SqlConnection sqlConnection1 = new SqlConnection("Server=tcp:safetystream.database.windows.net,1433;Database=SafetyStream;Persist Security Info=False;User ID=michaelcain;Password=Password1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+           SqlCommand cmd = new SqlCommand();
+           SqlDataReader reader;
 
-            using (SqlConnection connection = new SqlConnection("Server=tcp:safetystream.database.windows.net,1433;Database=SafetyStream;Persist Security Info=False;User ID=michaelcain;Password=Password1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
-            {
-                connection.Open();
-                System.Diagnostics.Debug.WriteLine("ServerVersion: {0}", connection.ServerVersion);
-                System.Diagnostics.Debug.WriteLine("State: {0}", connection.State);
+           cmd.CommandText = "SELECT * FROM Users WHERE Id = '" + Id + "'";
+           cmd.CommandType = CommandType.Text;
+           cmd.Connection = sqlConnection1;
+
+           sqlConnection1.Open();
+
+           string fName = null;
+           string lName = null;
+           string uAge = null;
+           string phoneNumnber = null;
+
+           reader = cmd.ExecuteReader();
+
+           while (reader.Read())
+           {
+
+               fName = reader[1].ToString();
+               lName = reader[2].ToString();
+               uAge = reader[4].ToString();
+               phoneNumnber = reader[9].ToString();
             }
-            // Mandatory connection values
-            SqlConnection sqlConnection1 = new SqlConnection("Server=tcp:safetystream.database.windows.net,1433;Database=SafetyStream;Persist Security Info=False;User ID=michaelcain;Password=Password1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-            SqlCommand cmd = new SqlCommand();
-            SqlDataReader reader;
+          
+           sqlConnection1.Close();
 
-            // Setup first name grab
-            cmd.CommandText = "SELECT * FROM Users WHERE Id = '" + id + "'";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = sqlConnection1;
-
-            // Open Connection
-            sqlConnection1.Open();
-
-            String fName = null;
-
-            // Grab first name
-            reader = cmd.ExecuteReader();
-            while (reader.Read())
+            var user = new User
             {
-                fName = reader[1].ToString();
-
-
-            }
-            User usr = new User
-            {
-                FirstName = fName
+                FirstName = fName, LastName = lName, Age = uAge, Phone = phoneNumnber
+                
             };
-
-
-            sqlConnection1.Close();
-
-            return View();
-        }*/
-
-
+            return Json(user, JsonRequestBehavior.AllowGet);
+       }
     }
-
-
-
 }

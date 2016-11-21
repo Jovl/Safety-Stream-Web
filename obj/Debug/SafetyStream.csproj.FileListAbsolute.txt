@@ -329,6 +329,8 @@ C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.Owin.dll
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.Owin.Host.SystemWeb.dll
@@ -356,6 +358,8 @@ C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.AI.Web.xml
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.ApplicationInsights.xml
+C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Newtonsoft.Json.xml
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\System.Web.Helpers.xml
@@ -379,6 +383,5 @@ C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\obj\Debug\SafetyStream.csprojResolveAssemblyReference.cache
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\obj\Debug\SafetyStream.dll
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\obj\Debug\SafetyStream.pdb
