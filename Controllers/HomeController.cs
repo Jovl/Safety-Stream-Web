@@ -17,42 +17,43 @@ namespace SafetyStream.Controllers
         }
 
        [HttpGet]
-       public JsonResult GetUser(string Id)
+       //Only allows HTTPGet requests
+
+       //User Id used to query user information
+       public JsonResult GetUser(string UserId)
        {
-           SqlConnection sqlConnection1 = new SqlConnection("Server=tcp:safetystream.database.windows.net,1433;Database=SafetyStream;Persist Security Info=False;User ID=michaelcain;Password=Password1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-           SqlCommand cmd = new SqlCommand();
-           SqlDataReader reader;
+           //SQL Connection String
+           SqlConnection SqlConnection = new SqlConnection("Server=tcp:safetystream.database.windows.net,1433;Database=SafetyStream;Persist Security Info=False;User ID=michaelcain;Password=Password1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+           SqlCommand SqlCommand = new SqlCommand();
+        
+           //Select all user information based on Id
+           SqlCommand.CommandText = "SELECT * FROM Users WHERE Id = '" + UserId + "'";
+           SqlCommand.CommandType = CommandType.Text;
+           SqlCommand.Connection = SqlConnection;
 
-           cmd.CommandText = "SELECT * FROM Users WHERE Id = '" + Id + "'";
-           cmd.CommandType = CommandType.Text;
-           cmd.Connection = sqlConnection1;
+           SqlConnection.Open();
 
-           sqlConnection1.Open();
+           var User = new User();
 
-           string fName = null;
-           string lName = null;
-           string uAge = null;
-           string phoneNumnber = null;
+           SqlDataReader SqlDataReader = SqlCommand.ExecuteReader();
 
-           reader = cmd.ExecuteReader();
-
-           while (reader.Read())
+           while (SqlDataReader.Read())
            {
+                //Create new user object
+                User = new User
+                {
+                    FirstName = SqlDataReader[1].ToString(),
+                    LastName = SqlDataReader[2].ToString(),
+                    Age = SqlDataReader[4].ToString(),
+                    Phone = SqlDataReader[9].ToString()
 
-               fName = reader[1].ToString();
-               lName = reader[2].ToString();
-               uAge = reader[4].ToString();
-               phoneNumnber = reader[9].ToString();
+                };
             }
           
-           sqlConnection1.Close();
+            SqlConnection.Close();
 
-            var user = new User
-            {
-                FirstName = fName, LastName = lName, Age = uAge, Phone = phoneNumnber
-                
-            };
-            return Json(user, JsonRequestBehavior.AllowGet);
+            //Allow request to accept JSON return 
+            return Json(User, JsonRequestBehavior.AllowGet);
        }
     }
 }
