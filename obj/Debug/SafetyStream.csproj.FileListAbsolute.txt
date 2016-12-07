@@ -385,3 +385,4 @@ C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\obj\Debug\SafetyStream.dll
 C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\obj\Debug\SafetyStream.pdb
+C:\Users\misna\Documents\Visual Studio 2015\Projects\Safety Stream\SafetyStream\obj\Debug\SafetyStream.csprojResolveAssemblyReference.cache

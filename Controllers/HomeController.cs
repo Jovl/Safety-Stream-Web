@@ -16,44 +16,48 @@ namespace SafetyStream.Controllers
             return View();
         }
 
-       [HttpGet]
-       //Only allows HTTPGet requests
+        [HttpGet]
+        public JsonResult GetUser(string UserId)
+        {
+            using (SqlConnection connection = new SqlConnection("Server=tcp:safetystream.database.windows.net,1433;Database=SafetyStream;Persist Security Info=False;User ID=michaelcain;Password=Password1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"))
+            {
+                connection.Open();
+                System.Diagnostics.Debug.WriteLine("ServerVersion: {0}", connection.ServerVersion);
+                System.Diagnostics.Debug.WriteLine("State: {0}", connection.State);
+            }
+            // SQL Connection Values
+            SqlConnection sqlConnection1 = new SqlConnection("Server=tcp:safetystream.database.windows.net,1433;Database=SafetyStream;Persist Security Info=False;User ID=michaelcain;Password=Password1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
 
-       //User Id used to query user information
-       public JsonResult GetUser(string UserId)
-       {
-           //SQL Connection String
-           SqlConnection SqlConnection = new SqlConnection("Server=tcp:safetystream.database.windows.net,1433;Database=SafetyStream;Persist Security Info=False;User ID=michaelcain;Password=Password1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-           SqlCommand SqlCommand = new SqlCommand();
-        
-           //Select all user information based on Id
-           SqlCommand.CommandText = "SELECT * FROM Users WHERE Id = '" + UserId + "'";
-           SqlCommand.CommandType = CommandType.Text;
-           SqlCommand.Connection = SqlConnection;
+            // SQL Query
+            cmd.CommandText = "SELECT * FROM Users WHERE imei = '" + UserId + "'";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = sqlConnection1;
 
-           SqlConnection.Open();
+            // Open Connection
+            sqlConnection1.Open();
 
-           var User = new User();
-
-           SqlDataReader SqlDataReader = SqlCommand.ExecuteReader();
-
-           while (SqlDataReader.Read())
-           {
+            var User = new User();
+      
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
                 //Create new user object
                 User = new User
                 {
-                    FirstName = SqlDataReader[1].ToString(),
-                    LastName = SqlDataReader[2].ToString(),
-                    Age = SqlDataReader[4].ToString(),
-                    Phone = SqlDataReader[9].ToString()
-
+                    FirstName = reader[1].ToString(),
+                    LastName = reader[2].ToString(),
+                    Age = reader[4].ToString(),
+                    Phone = reader[9].ToString()
                 };
             }
-          
-            SqlConnection.Close();
+            // Close connection to SQL database
+            sqlConnection1.Close();
 
-            //Allow request to accept JSON return 
+            //Return JSON object 
+
             return Json(User, JsonRequestBehavior.AllowGet);
-       }
+        }
     }
 }

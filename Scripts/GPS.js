@@ -7,13 +7,18 @@ var lineCoordinatesArray = [];
 var publish = 'pub-c-9d0d75a5-38db-404f-ac2a-884e18b041d8';
 var subscribe = 'sub-c-4e25fb64-37c7-11e5-a477-0619f8945a4f';
 var myLatLng;
+var imei;
+var done; 
 
 //Get current location of dispatcher 
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
+if (navigator.geolocation)
+{
+    navigator.geolocation.getCurrentPosition(function (position)
+    {
         var locationMarker = null;
-        if (locationMarker) {
 
+        if (locationMarker)
+        {
             return;
         }
         //Get current LatLng and set as default map position 
@@ -28,9 +33,10 @@ if (navigator.geolocation) {
         // Init Google Maps
         google.maps.event.addDomListener(window, 'load', initMap());
 
-            },
+    },
     //Console log Google Maps API failure 
-    function (error) {
+    function (error)
+    {
         console.log("Could initialize Google Maps API: ", error);
     },
     {
@@ -40,16 +46,18 @@ if (navigator.geolocation) {
 }
 
 
-function initMap() {
+function initMap()
+{
     console.log("Google Maps Initialized");
 
     //Map is definied as an HTML dom with name "map-canvas"
     map = new google.maps.Map(document.getElementById('map-canvas'),
     {
-        //Define specific map properties
+        //Define specific map properties and style 
         center: myLatLng,
         zoom: 15,
-        styles: [
+        styles:
+            [
             { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
             { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
             { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
@@ -139,7 +147,8 @@ function initMap() {
 }
 
 //Draw line path of GPS coordinates to indicate user position 
-function redraw() {
+function redraw()
+{
     map.setCenter({ lat: lat, lng: lng, alt: 0 });
     map_marker.setPosition({ lat: lat, lng: lng, alt: 0 });
     pushCoordToArray(lat, lng);
@@ -157,7 +166,8 @@ function redraw() {
 }
 
 
-function pushCoordToArray(latIn, lngIn) {
+function pushCoordToArray(latIn, lngIn)
+{
     lineCoordinatesArray.push(new google.maps.LatLng(latIn, lngIn));
 }
 
@@ -180,13 +190,19 @@ function initPubNub() {
             lat = message.lat;
             lng = message.lng;
 
-            GetUser(message.imei);
+            imei = message.imei;
 
+            GetUser();
 
             //Append GPS to HTML DOM
             document.getElementById("Latitude").innerHTML = "Latitude: ".concat(lat);
             document.getElementById("Longitude").innerHTML = "Latitude: ".concat(lng);
-            
+
+            document.getElementById("first").innerHTML = "First Name: ".concat(response.FirstName);
+            document.getElementById("last").innerHTML = "Last Name: ".concat(response.LastName);
+            document.getElementById("age").innerHTML = "Age: ".concat(response.Age);
+            document.getElementById("phonecont").innerHTML = "First Name: ".concat(response.Phone);
+           
 
             //Gecode LatLng to get Android client address 
             getAddress();
@@ -201,12 +217,14 @@ function initPubNub() {
 }
 
 //Google Maps API query to get address 
-function getAddress() {
+function getAddress()
+{
     //Use Android client LatLng for query 
     var query = "http://maps.googleapis.com/maps/api/geocode/json?latlng=".concat(lat).concat(",").concat(lng).concat("&sensor=true");
 
     //Parse JSON return results for address
-    $.getJSON(query, function (results) {
+    $.getJSON(query, function (results)
+    {
         //Append adress to HTML dom 
         document.getElementById("Address").innerHTML = "Address: ".concat(results.results[0].formatted_address);
     });
@@ -214,32 +232,32 @@ function getAddress() {
 
 
 //Query DB through AJAX GET request
-function GetUser(identifier) {
-    $.ajax({
-        url: "Home/GetUser",
-        type: "GET",
-        data: { id: identifier },
-        success: function (response) {
+function GetUser() {
+    if (!done) {
+        $.ajax({
+            url: "Home/GetUser",
+            type: "GET",
+            data: { UserId: imei.toString() },
+            success: function (responseq) {
+                //Return response and add set HTML properties 
 
-            //Return response and add set HTML properties 
+                document.getElementById("first").innerHTML = "First Name: ".concat(responseq.FirstName);
+                document.getElementById("last").innerHTML = "Last Name: ".concat(responseq.LastName);
+                document.getElementById("age").innerHTML = "Age: ".concat(responseq.Age);
+                document.getElementById("phonecont").innerHTML = "Phone Number: ".concat(responseq.Phone);
 
-            document.getElementById("first").innerHTML = "First Name: ".concat(response.FirstName);
-            document.getElementById("last").innerHTML = "Last Name: ".concat(response.LastName);
-            document.getElementById("age").innerHTML = "Age: ".concat(response.Age);
+                //Console log for testing
+                console.log(responseq);
 
-            var PhoneNum = response.Phone;
-
-            //Format phone number in appropriate 
-            var AreaCode = PhoneNum.slice(0, 3);
-            var Middle = PhoneNum.slice(3, 6);
-            var End = PhoneNum.slice(6, 9);
-
-            document.getElementById("phonecont").innerHTML = "Phone Number: ".concat("(").concat(AreaCode).concat(")").concat(Middle).concat("-").concat(End);
-
-            console.log(response);
-
-        },
-        error: function (xhr) {
-        }
-    });
+            },
+            error: function (xhr) {
+                //Alert dispatch of an error in user information
+                document.getElementById("first").innerHTML = "Database Failure";
+                document.getElementById("last").innerHTML = "Database Failure";
+                document.getElementById("age").innerHTML = "Database Failure";
+                document.getElementById("phonecont").innerHTML = "Database Failure";
+            }
+        });
+        done = true;
+    }
 }
